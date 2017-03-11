@@ -2,6 +2,8 @@
 
 require 'components/header.html';
 require 'components/navbar.html';
+
+
 ?>
 
 <section class="sub-banner" style="background-image:url(public/images/bg/login.png); height:200px;">
@@ -22,7 +24,7 @@ require 'components/navbar.html';
 
         <!-- FORM -->
         <form  style="margin-top:35px;" class="row" role="form" id="contact_form" class="contact-form" method="post" autocomplete="off">
-          <ul style="list-style-type:none" class="col-sm-12 col-md-6 ">
+          <ul style="list-style-type:none" class="col-sm-12 col-md-12">
             <li class="col-sm-12">
               <label style="color:#000000">
                 <input type="text" class="" name="name" id="name" placeholder="Your shop name *">
@@ -50,14 +52,13 @@ require 'components/navbar.html';
               <button style="float:right" type="submit" class="btn" value="submit" id="btn_submit">Create</button>
             </li>
             <li class="col-sm-12">
-              <button id="1" style="float:right" type="button" onclick="renderPreview(event)" class="btn btn-success"> Render preview </button>
+              <button id="1" style="float:right" type="button" class="btn btn-success"> Render preview </button>
             </li>
 
 
 
           </ul>
-          <iframe id="iframeId" src="shop/1" style="display:none"></iframe>
-          <div style="margin-bottom:35px;" id="preview" class="col-sm-12 col-md-6">
+
 
           </div>
         </form>
@@ -66,35 +67,7 @@ require 'components/navbar.html';
 </div>
 
 
-<script>
 
-  function renderPreview(event){
-    let shopId = event.target.id;
-    let preview = document.getElementById('preview');
-    preview.innerHTML = '';
-
-    // Fetch shop template
-    var divElement = document.getElementById('iframeId').contentWindow.document.getElementById('body');
-    html2canvas(divElement, {
-          onrendered: function(canvas) {
-              // canvas is the final rendered <canvas> element
-            preview.appendChild(canvas);
-            }
-    })
-
-    // Load template into preview
-    $header = '<h1> This is the header </h1>';
-    $body = 'This is the body';
-    $footer = 'This is the footer';
-
-
-
-
-    //preview.innerHTML += $body;
-    //preview.innerHTML += $footer;
-  }
-
-</script>
 
 <?php
 

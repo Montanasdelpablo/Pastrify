@@ -172,27 +172,53 @@ class FrontController extends Controller {
     if (!isset($_SESSION['id'])){
       return $this->view->render($response, 'index.html', []);
     } else {
+      // Grab user where user is session id
+      $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+      $user = new User($arr->username, $arr->password);
       $templates = $this->db->table('templates')->get();
 
       return $this->view->render($response, 'createShop.html', [
-        'templates' => $templates
+        'templates' => $templates,
+        'user' => $user,
         ]);
     }
 
   }
 
-  public function createPastry($request, $response){
+  public function myOrders($request, $response){
     if (!isset($_SESSION['id'])){
       return $this->view->render($response, 'index.html', []);
     } else {
-      $templates = $this->db->table('templates')->get();
+      $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+      $user = new User($arr->username, $arr->password);
 
-      return $this->view->render($response, 'createPastry.html', [
-        'templates' => $templates
+      // Fetch orders here
+
+      return $this->view->render($response, 'myOrders.html', [
+
+        'user' => $user,
         ]);
     }
 
   }
+
+  public function myShops($request, $response){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', []);
+    } else {
+      $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+      $user = new User($arr->username, $arr->password);
+
+      $shops = $this->db->table('shops')->where(['user_id' => $_SESSION['id']])->get();
+
+      return $this->view->render($response, 'myShops.html', [
+        'user' => $user,
+        'shops' => $shops,
+        ]);
+    }
+
+  }
+
 
 }
 

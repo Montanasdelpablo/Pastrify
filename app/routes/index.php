@@ -26,6 +26,8 @@ $app->get('/logout', 'FrontController:logout');
 
 // User routes
 $app->get('/dashboard', 'FrontController:dashboard');
+$app->get('/shops', 'FrontController:myShops');
+$app->get('/orders', 'FrontController:myOrders');
 $app->get('/create/shop', 'FrontController:createShop');
 $app->get('/create/pastry', 'FrontController:createPastry');
 

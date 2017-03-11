@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Lib\GrabzItClient;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +24,7 @@ class User extends Person {
   function setId($id){
     $this->id = $id;
   }
+
 
 }
 
