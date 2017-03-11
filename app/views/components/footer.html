@@ -56,10 +56,65 @@
 <!-- End Page Wrapper -->
 
 <!-- JavaScripts -->
-<script src="public/js/vendors/jquery/jquery.min.js"></script>
 
-<script src="public/js/vendors/bootstrap.min.js"></script>
 
+
+<script  type="text/javascript" src="public/js/vendors/jquery/jquery.min.js"></script>
+
+<script type="text/javascript" src="public/js/vendors/bootstrap.min.js"></script>
+<script type="text/javascript" src="public/js/main.js"></script>
+
+<script type="text/javascript">
+    function DisplayNav(){
+      let navbar = document.getElementById('navbarsExampleDefault');
+      let current = navbar.style.display;
+      console.log(current);
+      if(current == 'inherit'){
+        navbar.style.display = 'none';
+      } else {
+        navbar.style.display = 'inherit';
+      }
+    }
+
+      function DisplayDropdown(event){
+        // Event started
+        console.log("Event started: ", event)
+
+        // Close current open dropdowns
+        //let opendropdowns = document.getElementsByClassName("dropdown-menu");
+        //console.log("All dropdowns currently open on the page:", opendropdowns);
+        //if (opendropdowns.length > 0){
+        //  for(i=0; i < opendropdowns.length; i++){
+        //    opendropdowns[i].style.display = 'none';
+        //  }
+        //}
+
+        // Fetch clicked dropdown from event
+        let dropdown = document.getElementById(event.target.id);
+
+        // Call next element through function
+        let nextelem = next(dropdown);
+        console.log("Dropdown generated", dropdown);
+
+        // Fetch current state of display
+        let current = nextelem.style.display;
+
+        // Logic and set accordingly
+        if(current == 'inherit'){
+          nextelem.style.display = 'none';
+        } else {
+          nextelem.style.display = 'inherit';
+        }
+
+      }
+
+    function next(elem) {
+      do {
+          elem = elem.nextSibling;
+      } while (elem && elem.nodeType !== 1);
+      return elem;
+    }
+</script>
 
 </body>
 </html>
