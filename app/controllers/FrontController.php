@@ -168,13 +168,26 @@ class FrontController extends Controller {
 
   }
 
-  public function create($request, $response){
+  public function createShop($request, $response){
     if (!isset($_SESSION['id'])){
       return $this->view->render($response, 'index.html', []);
     } else {
       $templates = $this->db->table('templates')->get();
-      
-      return $this->view->render($response, 'create.html', [
+
+      return $this->view->render($response, 'createShop.html', [
+        'templates' => $templates
+        ]);
+    }
+
+  }
+
+  public function createPastry($request, $response){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', []);
+    } else {
+      $templates = $this->db->table('templates')->get();
+
+      return $this->view->render($response, 'createPastry.html', [
         'templates' => $templates
         ]);
     }
