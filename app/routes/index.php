@@ -30,6 +30,9 @@ $app->get('/shops', 'FrontController:myShops');
 $app->get('/orders', 'FrontController:myOrders');
 $app->get('/create/shop', 'FrontController:createShop');
 $app->get('/create/pastry', 'FrontController:createPastry');
+$app->get('/explore/shops', 'FrontController:exploreShops');
+$app->get('/explore/pastries', 'FrontController:explorePastries');
+
 
 // Shop Route
 $app->get('/shop/{id}', 'ShopController:index');

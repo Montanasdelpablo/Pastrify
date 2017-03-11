@@ -193,9 +193,11 @@ class FrontController extends Controller {
       $user = new User($arr->username, $arr->password);
 
       // Fetch orders here
+      //$orders = $this->db->table('orders')->where(['user_id' => $_SESSION['id']])->get();
+
 
       return $this->view->render($response, 'myOrders.html', [
-
+        //'orders' => $orders,
         'user' => $user,
         ]);
     }
@@ -216,6 +218,40 @@ class FrontController extends Controller {
         'shops' => $shops,
         ]);
     }
+
+  }
+
+  public function exploreShops($request, $response){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', []);
+    } else {
+      $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+      $user = new User($arr->username, $arr->password);
+
+      $shops = $this->db->table('shops')->get();
+
+      return $this->view->render($response, 'exploreShops.html', [
+        'user' => $user,
+        'shops' => $shops,
+        ]);
+    }
+  }
+
+    public function explorePastries($request, $response){
+      if (!isset($_SESSION['id'])){
+        return $this->view->render($response, 'index.html', []);
+      } else {
+        $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+        $user = new User($arr->username, $arr->password);
+
+        // Fetch pastries
+        //$pastries = $this->db->table('pastries')->get();
+
+        return $this->view->render($response, 'explorePastries.html', [
+          'user' => $user,
+          // 'pastries' => $pastries,
+          ]);
+      }
 
   }
 
