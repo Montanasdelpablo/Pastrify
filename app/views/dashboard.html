@@ -1,0 +1,159 @@
+<?php
+
+require 'components/header.html';
+require 'components/navbar.html';
+?>
+
+<section class="sub-banner" style="background-image:url(public/images/bg/login.png); height:200px;">
+    <div  class="container">
+      <div style="padding-top:35px;color:#fff;" class="text-center">
+        <h1>Dashboard</h1>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class='container'>
+    <div class='row'>
+      <div class="card col-sm-12 col-md-10 col-lg-6">
+          <div class="card-block">
+                <h4 class="card-title">My shops</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Here is a list of shops you currently own</h6>
+
+                <div style='margin-top:25px;' class="card col-sm-6">
+                  <div class="card-block col-sm-12">
+                    <h4 class="card-title">Shopname</h4>
+                    <h6 class="card-subtitle mb-2 textmuted">Shop description</h6>
+                    <h6 style='margin-top:10px; margin-bottom:10px' class="card-subtitle mb-2 textmuted">Clipboard here</h6>
+                    <a style='margin-top:5px; float:right' href="#" class="btn btn-success card-link">View</a>
+                    <a style='margin-top:5px; float:right' href="#" class="btn btn-outline-success card-link">Edit</a>
+                  </div>
+                </div>
+
+                <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View all</a>
+                <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Explore other shops</a>
+
+
+          </div>
+      </div>
+
+      <div class="card col-sm-12 col-md-10 col-lg-6">
+          <div class="card-block">
+                <h4 class="card-title">Orders</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Here is a list of orders</h6>
+
+                <table style='margin-top:25px;' class="table">
+                        <thead>
+                          <tr>
+                            <th>Order id.</th>
+                            <th>Order summary</th>
+                            <th>Name</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td><a href='#'>Big pastry, Funky pastry, Super p...</a> </td>
+                            <td>Big Johnson</td>
+                            <td>$29.99</td>
+                            <td> <span class='badge badge-success'> Fulfilled </span> </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td><a href='#'> Funky pastry, Super pastry </a> </td>
+                            <td>Kevin Boderus</td>
+                            <td>$18.99</td>
+                            <td> <span class='badge badge-warning'> Awaiting payment </span> </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td><a href='#'> Funky pastry </a> </td>
+                            <td>What am I doing here, I don't even like Pastry</td>
+                            <td>$9.99</td>
+                            <td> <span class='badge badge-danger'> Order cancelled </span> </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+
+                <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View all orders</a>
+                <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Contact Pastrify</a>
+
+
+          </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="card col-sm-12 col-md-10 col-lg-6">
+        <div class="card-block">
+              <h4 class="card-title">My pastries</h4>
+              <h6 class="card-subtitle mb-2 text-muted">Here is a list pastries you currently have</h6>
+
+              <div style='margin-top:25px;' class="card col-sm-6">
+                <div class="card-block col-sm-12">
+                  <h4 class="card-title">Pastry name</h4>
+                  <h6 class="card-subtitle mb-2 textmuted">Pastry description</h6>
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <span class="badge badge-success"> 10 Sold </span>
+                    </div>
+                    <div class="col-sm-6">
+                      <span class="badge badge-info"> $77 in Revenue </span>
+                    </div>
+
+
+                  </div>
+
+                  <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View</a>
+                  <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Edit</a>
+                </div>
+              </div>
+
+              <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View all</a>
+              <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Explore other shops</a>
+
+
+        </div>
+      </div>
+      <div class="card col-sm-12 col-md-10 col-lg-6" style="background: url('public/images/bg/login.png')">
+      <div class="card-block">
+            <h4 style="color:#fff" class="card-title">My profile</h4>
+            <h6 style="color:#fff" class="card-subtitle mb-2 ">This is your profile</h6>
+
+            <div style='margin-top:25px; margin-bottom:25px;' class="card col-sm-12 col-md-8 offset-md-2">
+              <div class="card-block col-sm-12">
+                <h4 class="card-title">Profile name</h4>
+                <h6 class="card-subtitle mb-2 textmuted">Profile bio</h6>
+
+                <div class="row">
+                  <div class="">
+                    <img class="col-sm-6 offset-sm-3 rounded-circle" src="https://img.clipartfox.com/364115354b9852a6aeff9757c3c6ab3e_chef-clip-art-free-clipart-clip-art-chef_931-983.jpeg">
+                  </div>
+                </div>
+
+
+
+                <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View profile</a>
+                <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Edit profile </a>
+              </div>
+            </div>
+
+
+
+
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+
+<?php
+
+require 'components/footer.html';
+
+?>

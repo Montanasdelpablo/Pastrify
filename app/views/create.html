@@ -1,0 +1,66 @@
+<?php
+
+require 'components/header.html';
+require 'components/navbar.html';
+?>
+
+<section class="sub-banner" style="background-image:url(public/images/bg/login.png); height:200px;">
+    <div class="container">
+      <div class="position-center-center">
+        <h1>Create shop</h1>
+      </div>
+    </div>
+  </section>
+
+
+<div id="content">
+  <section class="welcome padding-top-100 padding-bottom-100 ">
+    <div class="container">
+
+
+
+      <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You. Your shop has been created. </div>
+        <!-- FORM -->
+        <form role="form" id="contact_form" class="contact-form" method="post" autocomplete="off">
+          <ul  class="row">
+            <li class="col-sm-12">
+              <label style="color:#000000">
+                <input type="text" class="" name="name" id="name" placeholder="Your shop name *">
+              </label>
+            </li>
+            <li class="col-sm-12">
+              <label style="color:#000000">
+                Select your template
+              </label>
+
+
+              <?php  foreach ($templates as $template) {  ?>
+                <div class="template col-sm-12 col-md-4">
+                <div class="col-sm-12 radio">
+                    <label class="radio-inline"><input type="radio" value=<?php echo $template->id ?> name="optradio"><?php echo $template->name ?></label>
+
+                </div>
+                <img class="col-sm-12" style="margin-top:10px" src=<?php echo $template->thumb ?>>
+                </div>
+              <?php } ?>
+
+            </li>
+
+            <li style="margin-top:15px;"class="col-sm-12">
+              <button style="float:right" type="submit" class="btn" value="submit" id="btn_submit">Create</button>
+            </li>
+
+
+
+          </ul>
+        </form>
+
+      </div>
+</div>
+
+
+<?php
+
+require 'components/footer.html';
+
+?>

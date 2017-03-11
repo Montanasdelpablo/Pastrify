@@ -1,0 +1,92 @@
+<?php
+
+require 'components/header.html';
+require 'components/navbar.html';
+?>
+
+<section class="sub-banner" style="background-image:url(public/images/bg/login.png); height:200px;">
+    <div class="container">
+      <div style="padding-top:35px;color:#fff;" class="text-center">
+
+
+        <?php if(!empty($user)){ ?>
+        <h1> Welcome <?php echo ucfirst($user->name) ?>!</h1> <br>
+        <h3>You succesfully logged in as <?php echo ucfirst($user->username) ?></h3> <br>
+        <a href="dashboard" class="btn btn-success">Take me to the dashboard </a> </div>
+
+
+
+        <?php } else { ?>
+          <h1>Login</h1>
+        <?php } ?>
+
+      </div>
+    </div>
+  </section>
+
+<?php if(!empty($errors)){ ?>
+  <section class="portfolio port-wrap pink-bg padding-top-50">
+        <div class="container">
+          <!-- HEADING BLOCK -->
+          <div class="heading-block text-center margin-bottom-50">
+            <?php
+
+              foreach($errors as $error=>$value){ ?>
+                <h3 class="text-white no-margin"><?php echo $value ?></h3>
+            <?php } ?>
+
+
+
+          </div>
+        </div>
+  </section>
+  <?php } ?>
+
+
+
+<div id="content" style="padding-top:65px;padding-bottom:45px">
+  <section class=" ">
+    <div class="container">
+        <div id="contact_message" class="success-msg"> </div>
+
+            <!-- FORM -->
+            <form role="form" id="contact_form" class="contact-form" method="post">
+              <ul class="row">
+                <li style="list-style-type: none;padding-bottom:15px" class="col-sm-12">
+                  <label class="col-sm-12" style="color:#000000">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Your username *">
+                  </label>
+                </li>
+                <li style="list-style-type: none;padding-top:15px;"class="col-sm-12">
+                  <label class="col-sm-12" style="color:#000000">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Your password *">
+                  </label>
+                </li>
+                <li style="list-style-type: none;margin-top:35px" class="col-sm-12">
+                  <button style="float:right" type="submit" class="btn btn-success btn-lg" value="submit" id="btn_submit">Login</button>
+                </li>
+
+
+
+              </ul>
+            </form>
+
+    </div>
+
+  </section>
+
+</div>
+
+<div  class="jumbotron" style="background: url('public/images/bg/promo-bg.png');margin-bottom:0px">
+      <div class="container">
+        <h1 style="color:#fff" class="display-4">What is Pastrify?</h1>
+        <p style="color:#fff"> Read and learn all about our pastrific service.</p>
+        <p><a class="btn btn-outline-success btn-lg" href="explore" role="button">Read more &raquo;</a></p>
+      </div>
+</div>
+
+<?php
+
+require 'components/footer.html';
+
+?>

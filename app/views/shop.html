@@ -1,0 +1,30 @@
+<?php
+
+$header = "templates/template" . $shop['template_id'] . "_header.html";
+
+require $header;
+
+?>
+
+<!--  Just a quick test
+<div>
+  Hello this is shop <?php echo $shop['id'] ?> and template <?php echo $shop['template_id']?>.
+</div>
+-->
+
+<?php
+
+$body = "templates/template" . $shop['template_id'] . ".html";
+
+require $body;
+
+?>
+
+
+<?php
+
+$footer = "templates/template" . $shop['template_id'] . "_footer.html";
+
+require $footer;
+
+?>

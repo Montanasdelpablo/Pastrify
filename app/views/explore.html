@@ -1,0 +1,95 @@
+<?php
+
+require 'components/header.html';
+require 'components/navbar.html';
+?>
+
+<section class="sub-banner" style="background-image:url(public/images/bg/login.png); height:200px;">
+    <div  class="container">
+      <div style="padding-top:35px;color:#fff;" class="text-center">
+        <h1>Explore</h1>
+      </div>
+    </div>
+  </section>
+
+
+<?php if (!isset($_SESSION['id'])) { ?>
+
+<div style="padding-top:25px; padding-bottom:25px"class="container">
+
+
+      <!-- Get Form Shop selection-->
+      <div class="row">
+        <div class="col-sm-12 col-md-12 card">
+            <div class="card-block">
+               Shop filter here
+            </div>
+        </div>
+      </div>
+      <!-- Example row of columns -->
+      <div class="row">
+
+          <!-- sample shop -->
+          <div class="col-sm-12 col-md-4 card" style="margin-top: 10px;width: 20rem;">
+                <img style="height:200px" class="card-img-top" src="public/images/templates/1.jpg" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Sample shop</h4>
+                  <p class="card-text">Shop description sample blablabla.</p>
+                  <a target="_blank" href="#" class="btn btn-primary">View shop</a>
+                </div>
+          </div>
+
+      </div>
+  </div>
+
+  <div  class="jumbotron" style="background: url('public/images/bg/promo-bg.png');margin-bottom:0px">
+        <div class="container">
+          <h1 style="color:#fff" class="display-3">Create your own personal shop</h1>
+          <p style="color:#fff"> And join the so many others that went before you.</p>
+          <p><a class="btn btn-outline-success btn-lg" href="explore" role="button">Explore shops &raquo;</a></p>
+        </div>
+  </div>
+
+
+<?php } else { ?>
+
+  <div style="padding-top:25px; padding-bottom:55px"class="container">
+
+
+
+        <!-- Choose which to explore -->
+        <div class="row">
+
+
+            <div class="col-sm-12 col-md-6 card" style="margin-top: 10px;width: 20rem;">
+                  <img style="height:350px" class="card-img-top" src="public/images/bg/slide1.jpg" alt="Card image cap">
+                <div class="card-block">
+                  <h4 class="card-title">Shops</h4>
+
+                    <a href="explore/shops" class="btn btn-primary">Explore shops</a>
+                  </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6 card" style="margin-top: 10px;width: 20rem;">
+                  <img style="height:350px" class="card-img-top" src="public/images/bg/promo-bg.png" alt="Card image cap">
+                <div class="card-block">
+                  <h4 class="card-title">Pastries</h4>
+
+                    <a href="explore/pastries" class="btn btn-primary">Explore pastries</a>
+                  </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+<?php } ?>
+
+
+
+<?php
+
+require 'components/footer.html';
+
+?>

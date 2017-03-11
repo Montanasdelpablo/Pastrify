@@ -1,0 +1,24 @@
+{
+  "name": "pastrify",
+  "version": "1.0.0",
+  "description": "School assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Montanasdelpablo/Pastrify.git"
+  },
+  "keywords": [
+    "cakeshop",
+    "php",
+    "mysql"
+  ],
+  "author": "Montanas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Montanasdelpablo/Pastrify/issues"
+  },
+  "homepage": "https://github.com/Montanasdelpablo/Pastrify#readme"
+}

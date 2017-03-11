@@ -1,0 +1,52 @@
+
+
+<section id="about-us" class="eternal-container-full-width">
+    <div class="eternal-container row-wm">
+
+      <?php if (isset($shop['description'])) { ?>
+        <div class="name-container col-xs-4">
+              <h2 class="eternal-subtitle">
+              About Us
+              </h2>
+
+          </div>
+          <div class="description-container col-xs-8">
+            <div class="description">
+              <?php echo $shop['description'] ?>
+              </div>
+          </div>
+          <div class="clear"></div>
+      <?php } ?>
+      <?php if (isset($shop['products'])) {
+
+
+        $products = (array)$shop['products'];
+
+        print_r($products);
+
+
+      ?>
+          <div class="container-row">
+
+      <?php foreach ($products[0] as $product => $value){ ?>
+              <div class="item-features col-xs-4">
+                <div class="item-title-container">
+                      <i class="icon-camera5"></i>
+                      <span class="item-features-title"> <?php echo $product['name'] ?> </span>
+                  </div>
+                  <div class="item-hover-container">
+                    <div class="item-text-hover-container">
+                          <span class="item-features-title"><a href="#"><?php echo $product['name'] ?></a></span>
+                          <span class="item-hover-text">Amazing pastry</span>
+                    </div>
+                  </div>
+              </div>
+      <?php } ?>
+
+              <div class="clear"></div>
+          </div>
+          <?php } else { ?>
+            No products found.
+          <?php } ?>
+    </div>
+  </section>
