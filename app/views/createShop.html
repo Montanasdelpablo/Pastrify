@@ -14,28 +14,28 @@ require 'components/navbar.html';
 
 
 <div id="content">
-  <section class="welcome padding-top-100 padding-bottom-100 ">
+
     <div class="container">
 
 
 
-      <div id="contact_message" class="success-msg"> </div>
+
         <!-- FORM -->
-        <form role="form" id="contact_form" class="contact-form" method="post" autocomplete="off">
-          <ul  style="list-style-type:none" class="row">
+        <form  style="margin-top:35px;" class="row" role="form" id="contact_form" class="contact-form" method="post" autocomplete="off">
+          <ul style="list-style-type:none" class="col-sm-12 col-md-6 ">
             <li class="col-sm-12">
               <label style="color:#000000">
                 <input type="text" class="" name="name" id="name" placeholder="Your shop name *">
               </label>
             </li>
             <li class="col-sm-12">
-              <label style="color:#000000">
+              <label class="col-sm-12 col-md-12" style="color:#000000">
                 Select your template
               </label>
 
 
               <?php  foreach ($templates as $template) {  ?>
-                <div class="template col-sm-12 col-md-4">
+                <div  style="float:left; margin-bottom:20px" class="template col-sm-12 col-md-12 col-lg-4">
                 <div class="col-sm-12 radio">
                     <label class="radio-inline"><input type="radio" value=<?php echo $template->id ?> name="optradio"><?php echo $template->name ?></label>
 
@@ -46,18 +46,55 @@ require 'components/navbar.html';
 
             </li>
 
-            <li style="margin-top:15px;"class="col-sm-12">
+            <li style="margin-top:35px;" class="col-sm-12">
               <button style="float:right" type="submit" class="btn" value="submit" id="btn_submit">Create</button>
+            </li>
+            <li class="col-sm-12">
+              <button id="1" style="float:right" type="button" onclick="renderPreview(event)" class="btn btn-success"> Render preview </button>
             </li>
 
 
 
           </ul>
+          <iframe id="iframeId" src="shop/1" style="display:none"></iframe>
+          <div style="margin-bottom:35px;" id="preview" class="col-sm-12 col-md-6">
+
+          </div>
         </form>
 
       </div>
 </div>
 
+
+<script>
+
+  function renderPreview(event){
+    let shopId = event.target.id;
+    let preview = document.getElementById('preview');
+    preview.innerHTML = '';
+
+    // Fetch shop template
+    var divElement = document.getElementById('iframeId').contentWindow.document.getElementById('body');
+    html2canvas(divElement, {
+          onrendered: function(canvas) {
+              // canvas is the final rendered <canvas> element
+            preview.appendChild(canvas);
+            }
+    })
+
+    // Load template into preview
+    $header = '<h1> This is the header </h1>';
+    $body = 'This is the body';
+    $footer = 'This is the footer';
+
+
+
+
+    //preview.innerHTML += $body;
+    //preview.innerHTML += $footer;
+  }
+
+</script>
 
 <?php
 

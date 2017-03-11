@@ -11,15 +11,16 @@ require $header;
   Hello this is shop <?php echo $shop['id'] ?> and template <?php echo $shop['template_id']?>.
 </div>
 -->
-
+<div id="body">
 <?php
+
 
 $body = "templates/template" . $shop['template_id'] . ".html";
 
 require $body;
 
 ?>
-
+</div>
 
 <?php
 
