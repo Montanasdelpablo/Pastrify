@@ -1,0 +1,54 @@
+<?php
+
+require 'components/header.html';
+require 'components/navbar.html';
+?>
+
+<section class="sub-banner" style="background-image:url(public/images/bg/login.png); height:200px;">
+    <div  class="container">
+      <div style="padding-top:35px;color:#fff;" class="text-center">
+        <h1>Edit profile</h1>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class='container'>
+    <div style="margin-top:10px" class="row">
+      <div class="col-sm-12 col-md-6">
+        <img class="col-sm-6 offset-sm-3 rounded-circle" src="https://img.clipartfox.com/364115354b9852a6aeff9757c3c6ab3e_chef-clip-art-free-clipart-clip-art-chef_931-983.jpeg">
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+        <div  class="col-sm-12">
+          <a style='margin-top:10px; float:right' href="profile" class="btn btn-outline-success">View profile </a>
+        </div>
+        <div  class="col-sm-12">
+          <h4> Name: <?php $name = !empty($user->name) ? $user->name: 'Not set'; echo $name; ?> </h4>
+        </div>
+        <div class="col-sm-12">
+          <h4> Username: <?php $username = !empty($user->username) ? $user->username: 'Not set'; echo $username; ?> </h4>
+        </div>
+        <div class="col-sm-12">
+          <h4> Email: <?php $email = !empty($user->email) ? $user->email: 'Not set'; echo $email; ?> </h4>
+        </div>
+
+        <div  class="col-sm-12">
+          <a style='float:right' class="btn btn-success">Save </a>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+<?php
+
+require 'components/footer.html';
+
+?>

@@ -16,8 +16,33 @@ require 'components/navbar.html';
 
   <div class='container'>
     <div class="row">
-      <div class="col-md-12">
+      <div class="card col-sm-12 col-md-12 col-lg-12">
+          <div class="card-block">
+                <h4 class="card-title">My shops</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Here is a list of shops you currently own</h6>
+                <?php if (!empty($shops)) { ?>
+                <?php foreach ($shops as $shop ) { ?>
+                <div style='margin-top:25px;' class="card col-sm-12 col-md-6">
+                  <div class="card-block col-sm-12">
+                    <h4 class="card-title"> <?php echo $shop['name'] ?> </h4>
+                    <h6 class="card-subtitle mb-2 textmuted"><?php echo $shop["description"] ?></h6>
+                    <h6 style='margin-top:10px; margin-bottom:10px' class="card-subtitle mb-2 textmuted">Clipboard here</h6>
+                    <a target="_blank" style='margin-top:5px; float:right' href="shop/<?php echo $shop['id'] ?>" class="btn btn-success card-link">View</a>
+                    <a style='margin-top:5px; float:right' href="edit/shop/<?php echo $shop['id'] ?>" class="btn btn-outline-success card-link">Edit</a>
+                  </div>
+                </div>
 
+                <?php }} else { ?>
+                <div style='margin-top:25px;' class="card col-sm-6">
+                  No shops found.
+                </div>
+                <?php } ?>
+
+                <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Explore other shops</a>
+
+
+
+          </div>
       </div>
     </div>
   </div>

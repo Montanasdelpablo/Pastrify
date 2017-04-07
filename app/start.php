@@ -48,6 +48,10 @@ $container['ShopController'] = function ($container) {
   return new \App\Controllers\ShopController($container);
 };
 
+$container['BackController'] = function ($container) {
+  return new \App\Controllers\BackController($container);
+};
+
 // Require routes and views
 require 'routes.php';
 require 'views.php';

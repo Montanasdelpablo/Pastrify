@@ -1,0 +1,52 @@
+<?php require 'header.html'; ?>
+
+
+  <!-- /page loading spinner -->
+  <div class="app signin v2 usersession">
+    <div class="session-wrapper">
+      <div class="session-carousel slide" data-ride="carousel" data-interval="3000">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active" style="background-image:url(http://cf.cravingsofalunatic.com/wp-content/uploads/2015/09/Strawberry-Filled-Mini-Puff-Pastries-6.jpg);background-size:cover;background-repeat: no-repeat;background-position: 50% 50%;">
+          </div>
+          <div class="item" style="background-image:url(http://lorempixel.com/1200/800?2);background-size:cover;background-repeat: no-repeat;background-position: 50% 50%;">
+          </div>
+          <div class="item" style="background-image:url(http://lorempixel.com/1200/800?3);background-size:cover;background-repeat: no-repeat;background-position: 50% 50%;">
+          </div>
+        </div>
+      </div>
+      <div class="card bg-white no-border">
+        <div class="card-block">
+          <form role="form" class="form-layout"  autocomplete="off" method="post" action="">
+            <div class="text-center m-b">
+              <h4 class="text-uppercase">Welcome to the Pastrify Admin Area</h4>
+              <p>Please sign in to your account</p>
+            </div>
+            <?php if(!empty($errors)){ ?>
+                        <?php
+
+                          foreach($errors as $error=>$value){ ?>
+                            <h3 class="text-white no-margin"><?php echo $value ?></h3>
+                        <?php } ?>
+
+              <?php } ?>
+            <div class="form-inputs p-b">
+            <form>
+              <label class="text-uppercase">Your username</label>
+              <input type="username" class="form-control input-lg" placeholder="Email Address" name="username" required>
+              <label class="text-uppercase">Password</label>
+              <input type="password" class="form-control input-lg" placeholder="Password" name="password" required>
+
+            </div>
+            <button class="btn btn-primary btn-block btn-lg m-b" type="submit">Login</button>
+
+            <p class="text-center"><small><em>By clicking Log in you agree to our <a href="#">terms and conditions</a></em></small>
+            </p>
+          </form>
+        </div>
+      </div>
+      <div class="push"></div>
+    </div>
+  </div>
+
+  <?php require 'footer.html'; ?>

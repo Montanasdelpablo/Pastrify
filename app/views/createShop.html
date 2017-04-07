@@ -14,6 +14,23 @@ require 'components/navbar.html';
     </div>
   </section>
 
+<?php if(!empty($errors)){ ?>
+  <section class="portfolio port-wrap pink-bg padding-top-50">
+        <div class="container">
+          <!-- HEADING BLOCK -->
+          <div class="heading-block text-center margin-bottom-50">
+            <?php
+
+              foreach($errors as $error=>$value){ ?>
+                <h3 class="text-white no-margin"><?php echo $value ?></h3>
+            <?php } ?>
+
+
+
+          </div>
+        </div>
+  </section>
+<?php } ?>
 
 <div id="content">
 
@@ -26,10 +43,13 @@ require 'components/navbar.html';
         <form  style="margin-top:35px;" class="row" role="form" id="contact_form" class="contact-form" method="post" autocomplete="off">
           <ul style="list-style-type:none" class="col-sm-12 col-md-12">
             <li class="col-sm-12">
-              <label style="color:#000000">
-                <input type="text" class="" name="name" id="name" placeholder="Your shop name *">
+              <label class="col-sm-12 col-md-12" style="color:#000000">
+                What is your shop name?
               </label>
-            </li>
+              <label class="col-sm-12 col-md-12" style="color:#000000">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Your shop name *">
+              </label>
+            </li> <br>
             <li class="col-sm-12">
               <label class="col-sm-12 col-md-12" style="color:#000000">
                 Select your template
@@ -49,11 +69,9 @@ require 'components/navbar.html';
             </li>
 
             <li style="margin-top:35px;" class="col-sm-12">
-              <button style="float:right" type="submit" class="btn" value="submit" id="btn_submit">Create</button>
+              <button style="float:right" type="submit" class="btn btn-success" value="submit" id="btn_submit">Create</button>
             </li>
-            <li class="col-sm-12">
-              <button id="1" style="float:right" type="button" class="btn btn-success"> Render preview </button>
-            </li>
+
 
 
 

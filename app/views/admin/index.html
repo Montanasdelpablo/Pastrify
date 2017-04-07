@@ -1,0 +1,177 @@
+<?php require 'header.html'; ?>
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Pastrify Admin Area</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Templates</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Analytics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Engagement</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">My profile</button>
+          <a href="admin/logout" class="btn btn-danger">Logout</a>
+        </form>
+      </div>
+    </nav>
+
+    <div style="margin-top:75px" class="container">
+      <div class="row">
+
+        <main class="col-sm-12 col-md-12">
+
+          <h2>Overview</h2>
+          <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#users" role="tab">Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#products" role="tab">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#analytics" role="tab">Analytics</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#templates" role="tab">Templates</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#engagement" role="tab">Engagement</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="users" role="tabpanel">
+
+                <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>User id</th>
+                          <th>User role</th>
+                          <th>Username</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php if(!empty($users)) { ?>
+                      <?php foreach ($users as $user) { ?>
+                        <tr>
+                          <th scope="row"><?php echo $user['id']; ?></th>
+                          <td><?php $role = !empty($user['role']) ? $user['id'] : 'Not set'; echo $role; ?></td>
+                          <td><?php echo $user['username'] ?></td>
+                          <td><?php $name = !empty($user['name']) ? $user['email'] : 'Not set'; echo $name; ?></td>
+                          <td><?php $email = !empty($user['email']) ? $user['email'] : 'Not set'; echo $email; ?></td>
+                        </tr>
+                      <?php }} else { ?>
+                        <tr>
+                          <th>
+                          No users found.
+                          </th>
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+                    </table>
+
+
+              </div>
+              <div class="tab-pane" id="products" role="tabpanel">
+
+                <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Product id</th>
+                          <th>Creator</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                          <th>Sold</th>
+                          <th>Revenue</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php if(!empty($products)) { ?>
+                      <?php foreach ($products as $product) { ?>
+                        <tr>
+                          <th scope="row"><?php echo $product['id']; ?></th>
+                          <td><?php $creator = !empty($product['user_id']) ? $product['user_id'] : 'Not set'; echo $creator; ?></td>
+                          <td><?php echo $product['name'] ?></td>
+                          <td><?php $description = !empty($product['description']) ? $product['description'] : 'Not set'; echo $description; ?></td>
+                          <td><?php $sold = !empty($product['sold']) ? $product['sold'] : 'No sales'; echo $sold; ?></td>
+                          <td><?php $revenue = !empty($product['revenue']) ? $product['revenue'] : 'No revenue'; echo $revenue; ?></td>
+                        </tr>
+                      <?php }} else { ?>
+                        <tr>
+                          <th>
+                          No products found.
+                          </th>
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+                    </table>
+
+              </div>
+              <div class="tab-pane" id="analytics" role="tabpanel">
+                Here comes some analytics.
+              </div>
+              <div class="tab-pane" id="templates" role="tabpanel">
+                <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Template id</th>
+                          <th>Creator</th>
+                          <th>Name</th>
+                          <th>Thumb</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php if(!empty($templates)) { ?>
+                      <?php foreach ($templates as $template) { ?>
+                        <tr>
+                          <th scope="row"><?php echo $template['id']; ?></th>
+                          <td><?php $layout = !empty($template['layout']) ? $template['layout'] : 'Not set'; echo $layout; ?></td>
+                          <td><?php echo $template['name'] ?></td>
+                          <td><?php $thumb = !empty($template['thumb']) ? $template['thumb'] : 'Not set'; echo $thumb; ?></td>
+                        </tr>
+                      <?php }} else { ?>
+                        <tr>
+                          <th>
+                          No products found.
+                          </th>
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+                    </table>
+
+              </div>
+              <div class="tab-pane" id="engagement" role="tabpanel1">
+
+                Here comes an inbox
+              </div>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+
+<?php require 'footer.html'; ?>

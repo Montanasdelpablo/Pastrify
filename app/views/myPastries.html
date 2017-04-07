@@ -1,0 +1,68 @@
+<?php
+
+require 'components/header.html';
+require 'components/navbar.html';
+?>
+
+<section class="sub-banner" style="background-image:url(public/images/bg/login.png); height:200px;">
+    <div  class="container">
+      <div style="padding-top:35px;color:#fff;" class="text-center">
+        <h1>My pastries</h1>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class='container'>
+    <div class="row">
+      <div class="card col-sm-12 col-md-12 col-lg-12">
+          <div class="card-block">
+                <h4 class="card-title">My pastries</h4>
+                <h6 class="card-subtitle mb-2 text-muted">Here is a list pastries you currently have</h6>
+                <?php if(!empty($pastries)) { ?>
+
+                <?php foreach($pastries as $pastry) { ?>
+
+                <div style='margin-top:25px;' class="card col-sm-6">
+                  <div class="card-block col-sm-12">
+                    <h4 class="card-title"><?php echo $pastry['name']?></h4>
+                    <h6 class="card-subtitle mb-2 textmuted"><?php echo $pastry['description']?></h6>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <span class="badge badge-success"> <?php echo $pastry['sold']?> </span>
+                      </div>
+                      <div class="col-sm-6">
+                        <span class="badge badge-info"><?php echo $pastry['revenue']?> </span>
+                      </div>
+
+
+                    </div>
+
+                    <a style='margin-top:15px; float:right' href="view/pastry/<?php echo $shop['id'] ?>" class="btn btn-success card-link">View</a>
+                    <a style='margin-top:15px; float:right' href="edit/pastry/<?php echo $shop['id'] ?>" class="btn btn-outline-success card-link">Edit</a>
+                  </div>
+                </div>
+
+                <?php } } else {  ?>
+                  <div style='margin-top:25px;' class="card col-sm-6">
+                      No pastries found.
+                  </div>
+                <?php } ?>
+
+
+                <a style='margin-top:15px; float:right' href="explore/pastries" class="btn btn-outline-success card-link">Explore other pastries</a>
+
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+<?php
+
+require 'components/footer.html';
+
+?>

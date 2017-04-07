@@ -20,19 +20,27 @@ require 'components/navbar.html';
           <div class="card-block">
                 <h4 class="card-title">My shops</h4>
                 <h6 class="card-subtitle mb-2 text-muted">Here is a list of shops you currently own</h6>
-
+                <?php if (!empty($shops)) { ?>
+                <?php foreach ($shops as $shop ) { ?>
                 <div style='margin-top:25px;' class="card col-sm-6">
                   <div class="card-block col-sm-12">
-                    <h4 class="card-title">Shopname</h4>
-                    <h6 class="card-subtitle mb-2 textmuted">Shop description</h6>
+                    <h4 class="card-title"> <?php echo $shop['name'] ?> </h4>
+                    <h6 class="card-subtitle mb-2 textmuted"><?php echo $shop["description"] ?></h6>
                     <h6 style='margin-top:10px; margin-bottom:10px' class="card-subtitle mb-2 textmuted">Clipboard here</h6>
-                    <a style='margin-top:5px; float:right' href="#" class="btn btn-success card-link">View</a>
-                    <a style='margin-top:5px; float:right' href="#" class="btn btn-outline-success card-link">Edit</a>
+                    <a target="_blank" style='margin-top:5px; float:right' href="shop/<?php echo $shop['id'] ?>" class="btn btn-success card-link">View</a>
+                    <a style='margin-top:5px; float:right' href="edit/shop/<?php echo $shop['id'] ?>" class="btn btn-outline-success card-link">Edit</a>
                   </div>
                 </div>
 
+                <?php }} else { ?>
+                <div style='margin-top:25px;' class="card col-sm-6">
+                  No shops found.
+                </div>
+                <?php } ?>
+
                 <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View all</a>
                 <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Explore other shops</a>
+
 
 
           </div>
@@ -54,33 +62,31 @@ require 'components/navbar.html';
                           </tr>
                         </thead>
                         <tbody>
+                          <?php if(!empty($orders)) { ?>
+                          <?php foreach ($orders as $order) { ?>
                           <tr>
-                            <th scope="row">1</th>
-                            <td><a href='#'>Big pastry, Funky pastry, Super p...</a> </td>
-                            <td>Big Johnson</td>
-                            <td>$29.99</td>
-                            <td> <span class='badge badge-success'> Fulfilled </span> </td>
+                            <th scope="row"><?php echo $order['id'] ?></th>
+                            <td><a href='#'><?php echo $order['summary']?></a> </td>
+                            <td><?php echo $order['name'] ?></td>
+                            <td><?php echo $order['price'] ?></td>
+                            <?php if ($order['status'] == 'fulfilled') { ?>
+                              <td> <span class='badge badge-success'> Fulfilled </span> </td>
+                            <?php } else if ($order['status'] == 'awaiting') { ?>
+                              <td> <span class='badge badge-warning'> Awaiting payment </span> </td>
+                            <?php } else if ($order['status'] == 'cancelled') { ?>
+                              <td> <span class='badge badge-danger'> Order cancelled </span> </td>
+                            <?php } ?>
                           </tr>
+                          <?php }} else { ?>
                           <tr>
-                            <th scope="row">2</th>
-                            <td><a href='#'> Funky pastry, Super pastry </a> </td>
-                            <td>Kevin Boderus</td>
-                            <td>$18.99</td>
-                            <td> <span class='badge badge-warning'> Awaiting payment </span> </td>
+                            <td> No orders found. </td>
                           </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td><a href='#'> Funky pastry </a> </td>
-                            <td>What am I doing here, I don't even like Pastry</td>
-                            <td>$9.99</td>
-                            <td> <span class='badge badge-danger'> Order cancelled </span> </td>
-                          </tr>
-
+                          <?php } ?>
                         </tbody>
                       </table>
 
-                <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View all orders</a>
-                <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Contact Pastrify</a>
+                <a style='margin-top:15px; float:right' href="contact" class="btn btn-success card-link">View all orders</a>
+                <a style='margin-top:15px; float:right' href="orders" class="btn btn-outline-success card-link">Contact Pastrify</a>
 
 
           </div>
@@ -92,29 +98,41 @@ require 'components/navbar.html';
               <h4 class="card-title">My pastries</h4>
               <h6 class="card-subtitle mb-2 text-muted">Here is a list pastries you currently have</h6>
 
+
+              <?php if(!empty($pastries)) { ?>
+
+              <?php foreach($pastries as $pastry) { ?>
+
               <div style='margin-top:25px;' class="card col-sm-6">
                 <div class="card-block col-sm-12">
-                  <h4 class="card-title">Pastry name</h4>
-                  <h6 class="card-subtitle mb-2 textmuted">Pastry description</h6>
+                  <h4 class="card-title"><?php echo $pastry['name']?></h4>
+                  <h6 class="card-subtitle mb-2 textmuted"><?php echo $pastry['description']?></h6>
 
                   <div class="row">
                     <div class="col-sm-6">
-                      <span class="badge badge-success"> 10 Sold </span>
+                      <span class="badge badge-success"> <?php echo $pastry['sold']?> </span>
                     </div>
                     <div class="col-sm-6">
-                      <span class="badge badge-info"> $77 in Revenue </span>
+                      <span class="badge badge-info"><?php echo $pastry['revenue']?> </span>
                     </div>
 
 
                   </div>
 
-                  <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View</a>
-                  <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Edit</a>
+                  <a style='margin-top:15px; float:right' href="view/pastry/<?php echo $shop['id'] ?>" class="btn btn-success card-link">View</a>
+                  <a style='margin-top:15px; float:right' href="edit/pastry/<?php echo $shop['id'] ?>" class="btn btn-outline-success card-link">Edit</a>
                 </div>
               </div>
 
-              <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View all</a>
-              <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Explore other shops</a>
+              <?php } } else {  ?>
+                <div style='margin-top:25px;' class="card col-sm-6">
+                    No pastries found.
+                </div>
+              <?php } ?>
+
+
+              <a style='margin-top:15px; float:right' href="pastries" class="btn btn-success card-link">View all</a>
+              <a style='margin-top:15px; float:right' href="explore/pastries" class="btn btn-outline-success card-link">Explore other shops</a>
 
 
         </div>
@@ -126,8 +144,8 @@ require 'components/navbar.html';
 
             <div style='margin-top:25px; margin-bottom:25px;' class="card col-sm-12 col-md-8 offset-md-2">
               <div class="card-block col-sm-12">
-                <h4 class="card-title">Profile name</h4>
-                <h6 class="card-subtitle mb-2 textmuted">Profile bio</h6>
+                <h4 class="card-title"><?php echo $user->name ?></h4>
+                <h6 class="card-subtitle mb-2 textmuted">Bio </h6>
 
                 <div class="row">
                   <div class="">
@@ -137,8 +155,8 @@ require 'components/navbar.html';
 
 
 
-                <a style='margin-top:15px; float:right' href="#" class="btn btn-success card-link">View profile</a>
-                <a style='margin-top:15px; float:right' href="#" class="btn btn-outline-success card-link">Edit profile </a>
+                <a style='margin-top:15px; float:right' href="profile" class="btn btn-success card-link">View profile</a>
+                <a style='margin-top:15px; float:right' href="edit/profile" class="btn btn-outline-success card-link">Edit profile </a>
               </div>
             </div>
 

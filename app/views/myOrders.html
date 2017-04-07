@@ -27,27 +27,26 @@ require 'components/navbar.html';
                 </tr>
               </thead>
               <tbody>
+                <?php if(!empty($orders)) { ?>
+                <?php foreach ($orders as $order) { ?>
                 <tr>
-                  <th scope="row">1</th>
-                  <td><a href='#'>Big pastry, Funky pastry, Super p...</a> </td>
-                  <td>Big Johnson</td>
-                  <td>$29.99</td>
-                  <td> <span class='badge badge-success'> Fulfilled </span> </td>
+                  <th scope="row"><?php echo $order['id'] ?></th>
+                  <td><a href='#'><?php echo $order['summary']?></a> </td>
+                  <td><?php echo $order['name'] ?></td>
+                  <td><?php echo $order['price'] ?></td>
+                  <?php if ($order['status'] == 'fulfilled') { ?>
+                    <td> <span class='badge badge-success'> Fulfilled </span> </td>
+                  <?php } else if ($order['status'] == 'awaiting') { ?>
+                    <td> <span class='badge badge-warning'> Awaiting payment </span> </td>
+                  <?php } else if ($order['status'] == 'cancelled') { ?>
+                    <td> <span class='badge badge-danger'> Order cancelled </span> </td>
+                  <?php } ?>
                 </tr>
+                <?php }} else { ?>
                 <tr>
-                  <th scope="row">2</th>
-                  <td><a href='#'> Funky pastry, Super pastry </a> </td>
-                  <td>Kevin Boderus</td>
-                  <td>$18.99</td>
-                  <td> <span class='badge badge-warning'> Awaiting payment </span> </td>
+                  <td> No orders found. </td>
                 </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td><a href='#'> Funky pastry </a> </td>
-                  <td>What am I doing here, I don't even like Pastry</td>
-                  <td>$9.99</td>
-                  <td> <span class='badge badge-danger'> Order cancelled </span> </td>
-                </tr>
+                <?php } ?>
 
               </tbody>
             </table>

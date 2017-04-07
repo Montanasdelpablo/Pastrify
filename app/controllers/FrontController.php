@@ -147,6 +147,85 @@ class FrontController extends Controller {
     ]);
   }
 
+  public function myProfile($request, $response){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', [
+          'user' => $user,
+      ]);
+    } else {
+      // Grab user where user is session id
+      $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+      $user = new User($arr->username, $arr->password);
+
+
+      return $this->view->render($response, 'profile.html', [
+          'user' => $user,
+      ]);
+    }
+  }
+
+  public function editProfile($request, $response){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', [
+          'user' => $user,
+      ]);
+    } else {
+      // Grab user where user is session id
+      $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+      $user = new User($arr->username, $arr->password);
+
+
+      return $this->view->render($response, 'editProfile.html', [
+          'user' => $user,
+      ]);
+    }
+  }
+
+  public function editShop($request, $response, $args){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', [
+          'user' => $user,
+      ]);
+    } else {
+      // Grab user where user is session id
+      $id = $args['id'];
+      $shop =  $this->db->table('shops')->where(['id' => $id])->first();
+      $shop = json_decode(json_encode($shop), True);
+
+      $pastries = $this->db->table('pastries')->where(['user_id' => $_SESSION['id']])->get();
+      $pastries = json_decode(json_encode($pastries), True);
+
+      $templates = $this->db->table('templates')->get();
+      $templates = json_decode(json_encode($templates), True);
+
+      return $this->view->render($response, 'editShop.html', [
+          'shop' => $shop,
+          'templates' => $templates,
+          'pastries' => $pastries,
+      ]);
+    }
+  }
+
+  public function editPastry($request, $response, $args){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', [
+          'user' => $user,
+      ]);
+    } else {
+      // Grab user where user is session id
+      $id = $args['id'];
+      $pastry =  $this->db->table('pastries')->where(['id' => $id])->first();
+
+      // Ingredients
+      $ingredients =  $this->db->table('ingredients')->where(['id' => $id])->first();
+
+      return $this->view->render($response, 'editPastry.html', [
+          'pastry' => $pastry,
+      ]);
+    }
+  }
+
+
   public function dashboard($request, $response){
     if (!isset($_SESSION['id'])){
       return $this->view->render($response, 'index.html', [
@@ -156,13 +235,23 @@ class FrontController extends Controller {
       // Grab user where user is session id
       $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
       $user = new User($arr->username, $arr->password);
+
       // Grab shops from db where user
       //$shops = Array();
       $shops = $this->db->table('shops')->where(['user_id' => $_SESSION['id']])->get();
+      $shops = json_decode(json_encode($shops), True);
+
+      $orders = $this->db->table('orders')->where(['user_id' => $_SESSION['id']])->get();
+      $orders = json_decode(json_encode($orders), True);
+
+      $pastries = $this->db->table('pastries')->where(['user_id' => $_SESSION['id']])->get();
+      $pastries = json_decode(json_encode($pastries), True);
 
       return $this->view->render($response, 'dashboard.html', [
           'user' => $user,
-          'shops' => $shops
+          'shops' => $shops,
+          'orders' => $orders,
+          'pastries' => $pastries,
       ]);
     }
 
@@ -185,6 +274,36 @@ class FrontController extends Controller {
 
   }
 
+
+  public function createShopPost($request, $response){
+    // Set to empty array
+    $errors = [];
+
+    // Fetch body from request
+    $data = $request->getParsedBody();
+
+    // Grab values
+    $template = $data['optradio'];
+    $name = $data['name'];
+
+
+
+    // Validation
+    if (!empty($template) && !empty($name)){
+          $userid = $_SESSION['id'];
+          $arr = ['user_id' => $userid, 'name' => $name, 'template' => $template];
+          $this->db->table('shops')->insert($arr);
+    } else {
+      // Required fields are empty
+      $errors['fields'] = "Not all required fields are entered.";
+    }
+    // Return view
+    return $this->view->render($response, 'createShop.html', [
+        'user' => $user,
+        'errors' => $errors
+    ]);
+  }
+
   public function myOrders($request, $response){
     if (!isset($_SESSION['id'])){
       return $this->view->render($response, 'index.html', []);
@@ -192,12 +311,12 @@ class FrontController extends Controller {
       $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
       $user = new User($arr->username, $arr->password);
 
-      // Fetch orders here
-      //$orders = $this->db->table('orders')->where(['user_id' => $_SESSION['id']])->get();
+      $orders = $this->db->table('orders')->where(['user_id' => $_SESSION['id']])->get();
+      $orders = json_decode(json_encode($orders), True);
 
 
       return $this->view->render($response, 'myOrders.html', [
-        //'orders' => $orders,
+        'orders' => $orders,
         'user' => $user,
         ]);
     }
@@ -212,10 +331,29 @@ class FrontController extends Controller {
       $user = new User($arr->username, $arr->password);
 
       $shops = $this->db->table('shops')->where(['user_id' => $_SESSION['id']])->get();
+      $shops = json_decode(json_encode($shops), True);
 
       return $this->view->render($response, 'myShops.html', [
         'user' => $user,
         'shops' => $shops,
+        ]);
+    }
+
+  }
+
+  public function myPastries($request, $response){
+    if (!isset($_SESSION['id'])){
+      return $this->view->render($response, 'index.html', []);
+    } else {
+      $arr =  $this->db->table('users')->where(['id' => $_SESSION['id']])->first();
+      $user = new User($arr->username, $arr->password);
+
+      $pastries = $this->db->table('pastries')->where(['user_id' => $_SESSION['id']])->get();
+      $pastries = json_decode(json_encode($pastries), True);
+
+      return $this->view->render($response, 'myPastries.html', [
+        'user' => $user,
+        'pastries' => $pastries,
         ]);
     }
 

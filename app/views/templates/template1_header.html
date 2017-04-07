@@ -11,10 +11,10 @@ if (isset($shop['name'])){
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?php echo $storename; ?></title>
+    <title><?php echo $storename; ?> - Made with Pastrify</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
-    
+
     <!-- STYLES -->
     <link rel="stylesheet" type="text/css" href="/Cakeshop/public/templates/template1/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/Cakeshop/public/templates/template1/css/slippry.css">
@@ -25,15 +25,21 @@ if (isset($shop['name'])){
 
 <body>
 
-<header style="margin-bottom:50px" id="home" class="eternal-container-full-width">
+<header style="width:100%; position: fixed; margin-bottom:50px" class="container">
 
 
       <!-- LOGO -->
-      <div style="margin-bottom:80px" class="logo-container">
-          <a href="#"> <?php echo $storename; ?> </a>
+      <div style="width:100%" class="row">
+        <div class="col-sm-4">
+          <h4>
+          <a href="shop/<?php echo $shop['id']?>"> <?php echo $storename; ?> </a>
+          </h4>
+        </div>
+
+        <div class="text-right col-sm-8">
+          <img style="width:25px; height:25px;" src="http://simpleicon.com/wp-content/uploads/Shopping-Cart-11.png">
+        </div>
       </div>
 
-      <div id="open-menu" class="open-menu"><i class="icon-heart5"></i></div>
-      <div id="close-menu" class="close-menu"><i class="icon-heart6"></i></div>
 
 </header>
